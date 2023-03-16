@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
 import com.example.androidproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,5 +22,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         //}
 
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        setSupportActionBar(binding.bottomAppToolBar)
+        binding.fab.setOnClickListener {
+
+        }
     }
 }
