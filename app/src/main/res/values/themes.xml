@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="colorSecondaryContainer">#746CE89C</item>
 
     </style>
     <style name="Widget.Project.ActionBar" parent="Widget.Material3.BottomAppBar">

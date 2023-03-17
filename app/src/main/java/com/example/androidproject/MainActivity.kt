@@ -5,7 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.androidproject.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -23,8 +26,9 @@ class MainActivity : AppCompatActivity() {
         //}
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-
         setSupportActionBar(binding.bottomAppToolBar)
+        binding.bottomNavigationView.setupWithNavController(navController)
+        binding.bottomNavigationView.bringToFront()
         binding.fab.setOnClickListener {
 
         }

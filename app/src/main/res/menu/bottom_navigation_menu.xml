@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <item
+        android:id="@+id/accountFragment"
         android:icon="@drawable/ic_account_menu"
         android:title="Account"
         app:showAsAction="ifRoom"/>
     <item
-        android:icon="@drawable/ic_reminder_menu"
+        android:id="@+id/plantFragment"
+        android:icon="@drawable/ic_plant_menu"
         android:title="Plants"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/settngsFragment"
         android:icon="@drawable/ic_settings_menu"
         android:title="Settings"
         app:showAsAction="ifRoom"/>
-
-
-
 </menu>
