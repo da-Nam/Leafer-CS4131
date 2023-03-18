@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1015396100195",
+    "project_id": "leafer-androidproject",
+    "storage_bucket": "leafer-androidproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015396100195:android:d80a7fe6f885bd8d8e7056",
+        "android_client_info": {
+          "package_name": "com.example.androidproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015396100195-do45jjburv4njl9vnfn5hmqlrajjatrc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2fpRfwUPfuDAGgWD3D8ZiZIyaWPfNbqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015396100195-do45jjburv4njl9vnfn5hmqlrajjatrc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

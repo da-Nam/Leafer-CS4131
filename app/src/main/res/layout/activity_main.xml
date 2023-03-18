@@ -5,36 +5,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/add_plant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center|right"
+        android:orientation="horizontal"
+        android:paddingRight="17dp"
+        android:background="@android:color/transparent"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:fontFamily="@font/lato"
+            android:text="@string/add_plant"
+            android:textSize="18dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_plant_fab"
+            android:importantForAccessibility="no"
+            android:tooltipText="Add"
+            android:elevation="0dp"
+            app:elevation="0dp"
+            style="@style/Widget.Project.Add"
+            android:fadingEdgeLength="0dp"
+            app:srcCompat="@drawable/ic_add_fab" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/scan_plant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center|right"
+        android:orientation="horizontal"
+        android:paddingRight="17dp"
+        android:background="@android:color/transparent"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:fontFamily="@font/lato"
+            android:text="@string/scan_plant"
+            android:textSize="18dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/scan_plant_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:fadingEdgeLength="0dp"
+            android:importantForAccessibility="no"
+            android:tooltipText="Scan"
+            android:elevation="0dp"
+            style="@style/Widget.Project.Scan"
+            app:srcCompat="@drawable/ic_scan_fab"/>
+
+    </LinearLayout>
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppToolBar"
+        style="@style/Widget.Project.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:gravity="center_horizontal"
-        style="@style/Widget.Project.ActionBar"
         app:fabAnchorMode="cradle">
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="70dp"
             android:layout_gravity="center"
+            android:layout_marginEnd="70dp"
             android:background="@android:color/transparent"
-
-            app:menu="@menu/bottom_navigation_menu"/>
+            app:menu="@menu/bottom_navigation_menu" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <include layout="@layout/content_main" />
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:tooltipText="Add"
-        android:importantForAccessibility="no"
         android:id="@+id/fab"
+        style="@style/Widget.Project.Fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_add_fab"
-        app:layout_anchor="@id/bottomAppToolBar"
-        style="@style/Widget.Project.Fab"
         android:elevation="2dp"
-        />
+        android:importantForAccessibility="no"
+        android:tooltipText="Add"
+        app:layout_anchor="@id/bottomAppToolBar"
+        app:srcCompat="@drawable/ic_add_fab" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

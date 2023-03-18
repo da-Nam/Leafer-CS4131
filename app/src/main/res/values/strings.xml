@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">AndroidProject</string>
+    <string name="app_name">Leafer</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="scan_plant">Identify Plants</string>
+    <string name="add_plant">Add Plants</string>
 </resources>
