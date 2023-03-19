@@ -15,6 +15,7 @@
         <item name="colorSecondaryContainer">#746CE89C</item>
         <item name="fontFamily">@font/lato</item>
 
+        <item name="android:windowBackground">#fefcf6</item>
     </style>
     <style name="Widget.Project.ActionBar" parent="Widget.Material3.BottomAppBar">
         <item name="backgroundTint">#F096EAB6</item>
@@ -31,4 +32,30 @@
         <item name="backgroundTint">#D5F1A3</item>
         <item name="fabCustomSize">53dp</item>
     </style>
+    <style name="Widget.Project.LoginCardView" parent="Theme.AndroidProject">
+        <item name="cardBackgroundColor">#E2EFCA</item>
+
+    </style>
+
+    <style name="Widget.Project.cutCardView" parent="Theme.AndroidProject">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">15dp</item>
+        <item name="cornerSizeTopLeft">15dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+    <style name="Widget.Project.cutTopCardView" parent="Theme.AndroidProject">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+    </style>
+
+    <style name="Widget.Project.LoginTextInput" parent="Theme.AndroidProject">
+        <item name="boxBackgroundColor">#eceae5</item>
+    </style>
+
+
+
 </resources>

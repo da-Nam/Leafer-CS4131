@@ -1,7 +1,10 @@
 package com.example.androidproject
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.androidproject.databinding.ActivityOnboardingBinding
@@ -29,4 +32,5 @@ class OnboardingActivity : AppCompatActivity() {
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         indicator.setViewPager(viewPager)
     }
+
 }
