@@ -34,9 +34,14 @@
     </style>
     <style name="Widget.Project.LoginCardView" parent="Theme.AndroidProject">
         <item name="cardBackgroundColor">#E2EFCA</item>
+        <item name="cardElevation">5dp</item>
 
     </style>
+    <style name="Widget.Project.LoginBodyCardView" parent="Theme.AndroidProject">
+        <item name="cardElevation">5dp</item>
+        <item name="cardBackgroundColor">#FFFFFF</item>
 
+    </style>
     <style name="Widget.Project.cutCardView" parent="Theme.AndroidProject">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">15dp</item>
@@ -56,6 +61,15 @@
         <item name="boxBackgroundColor">#eceae5</item>
     </style>
 
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Widget.Project.AccountCard" parent="Theme.AndroidProject">
+        <item name="cardElevation">5dp</item>
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
 
 
 </resources>

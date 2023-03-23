@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <include layout="@layout/content_main" />
 
     <LinearLayout
         android:id="@+id/add_plant"
@@ -90,7 +91,6 @@
             app:menu="@menu/bottom_navigation_menu" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
-    <include layout="@layout/content_main" />
 
 
 
@@ -103,5 +103,5 @@
         android:importantForAccessibility="no"
         android:tooltipText="Add"
         app:layout_anchor="@id/bottomAppToolBar"
-        app:srcCompat="@drawable/ic_add_fab" />
+        app:srcCompat="@drawable/ic_add_fab"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

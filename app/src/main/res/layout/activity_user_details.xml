@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginActivities.LoginActivity"
+    tools:context=".loginActivities.UserDetailsActivity"
     android:animateLayoutChanges="true">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,12 +18,17 @@
             android:orientation="vertical"
             android:animateLayoutChanges="true">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+
+            <com.google.android.material.imageview.ShapeableImageView
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                android:id="@+id/pfp_preview_im"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_margin="30dp"
-                app:srcCompat="@drawable/planticon" />
+                app:strokeWidth="1dp"
+                app:strokeColor="#00a3a4"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/ic_default_pfp" />
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/Widget.Project.LoginCardView"
@@ -42,8 +47,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato"
                     android:padding="15dp"
-                    android:id="@+id/banner_text"
-                    android:text="Sign in to Leafer!"
+                    android:text="Enter User Details!"
                     android:textSize="30dp"
                     android:textStyle="bold" />
 
@@ -72,11 +76,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
-                        android:hint="Email"
-                        app:startIconDrawable="@drawable/ic_mail_login">
+                        android:hint="Displayed Username"
+                        app:startIconDrawable="@drawable/ic_username_details">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/email_text"
+                            android:id="@+id/username_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textEmailAddress" />
@@ -87,58 +91,19 @@
                         style="@style/Widget.Project.LoginTextInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:hint="Password"
-                        app:startIconDrawable="@drawable/ic_pass_login">
+                        android:layout_margin="15dp"
+                        android:hint="Profile Picture URL"
+                        app:startIconDrawable="@drawable/ic_image_details">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/password_text"
+                            android:id="@+id/image_url_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword" />
+                            android:inputType="textEmailAddress" />
+
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/confirm_pass_layout"
-                        style="@style/Widget.Project.LoginTextInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"
-                        android:hint="Confirm Password"
-                        android:visibility="gone"
-                        app:startIconDrawable="@drawable/ic_pass_login">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/confirm_pass_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPassword" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:importantForAccessibility="no"
-                        android:id="@+id/log_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato"
-                        android:paddingTop="10dp"
-                        android:text="Don't have an account? Sign up now!"
-                        android:textAlignment="center"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:importantForAccessibility="no"
-                        android:id="@+id/re_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato"
-                        android:paddingTop="10dp"
-                        android:text="Have an account? Sign in now!"
-                        android:textAlignment="center"
-                        android:visibility="gone"
-                        android:textSize="15dp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/confirm_btn"
@@ -147,7 +112,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="15dp"
                         android:fontFamily="@font/lato"
-                        android:text="Sign in"
+                        android:text="Confirm"
                         android:textSize="20dp"
                         app:cornerRadius="10dp" />
                 </LinearLayout>

@@ -24,6 +24,9 @@ class OnboardingActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        val sharedPreferences = getSharedPreferences("Main_Onboard_Pref", MODE_PRIVATE)
+        sharedPreferences.edit().putBoolean("first_time", false).commit()
+
         val viewPager = binding.viewPager2
         val indicator = binding.indicator
         viewPager.offscreenPageLimit = 3
@@ -31,6 +34,7 @@ class OnboardingActivity : AppCompatActivity() {
         viewPager.adapter = OnboardingAdapter(this, fragmentList)
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         indicator.setViewPager(viewPager)
+
     }
 
 }
