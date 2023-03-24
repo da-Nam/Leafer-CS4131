@@ -7,6 +7,7 @@
     tools:context=".mainFragments.AccountFragment">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,11 +18,7 @@
             app:strokeWidth="0dp"
             style="@style/Widget.Project.AccountCard"
             android:layout_margin="10dp">
-            <ImageView
-                android:src="@drawable/gradient_shape"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,22 +26,25 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
+
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/pfp_im"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
                     android:layout_marginTop="20dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#00a3a4"
+                    app:strokeColor="#496727"
                     app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                     app:srcCompat="@drawable/ic_default_pfp" />
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/change_pfp_text"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Change profile picture"
                     android:textAlignment="center"
                     android:layout_marginBottom="10dp"
                     android:textSize="11dp" />
+
 
                 <TextView
                     android:id="@+id/username_text"
@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    app:dividerColor="#00a3a4"
+                    app:dividerColor="#496727"
                     android:layout_marginRight="15dp" />
 
                 <LinearLayout
@@ -78,7 +78,7 @@
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
-                        android:background="#00a3a4" />
+                        android:background="#496727" />
 
                     <TextView
                         android:layout_width="match_parent"

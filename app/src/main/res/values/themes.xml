@@ -40,7 +40,6 @@
     <style name="Widget.Project.LoginBodyCardView" parent="Theme.AndroidProject">
         <item name="cardElevation">5dp</item>
         <item name="cardBackgroundColor">#FFFFFF</item>
-
     </style>
     <style name="Widget.Project.cutCardView" parent="Theme.AndroidProject">
         <item name="cornerFamily">rounded</item>
@@ -68,8 +67,18 @@
 
     <style name="Widget.Project.AccountCard" parent="Theme.AndroidProject">
         <item name="cardElevation">5dp</item>
-        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardBackgroundColor">#f5f4eb</item>
     </style>
+    <style name="ProgressBar" parent="Theme.AndroidProject">
+        <item name="colorAccent">#ff00a7a8</item>
+    </style>
+
+    <style name="Widget.Project.PlantConfirmationCardView" parent="Theme.AndroidProject">
+        <item name="cardElevation">5dp</item>
+        <item name="cardBackgroundColor">#f5f4eb</item>
+    </style>
+
+
 
 
 </resources>

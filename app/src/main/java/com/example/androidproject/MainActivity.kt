@@ -14,6 +14,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.androidproject.databinding.ActivityMainBinding
 import com.example.androidproject.loginActivities.LoginActivity
+import com.example.androidproject.plantCameraActivities.AddPlantsActivity
+import com.example.androidproject.plantCameraActivities.ScanPlantsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -39,10 +41,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.addPlantFab.setOnClickListener {
-
+            val intent = Intent(this, AddPlantsActivity::class.java)
+            startActivity(intent)
         }
         binding.scanPlantFab.setOnClickListener {
+            val intent = Intent(this, ScanPlantsActivity::class.java)
+            startActivity(intent)
         }
+
 
         //get Firebase auth
         auth = Firebase.auth
@@ -68,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun animateFabMenu(b : Boolean) {
+    fun animateFabMenu(b : Boolean) {
         val metrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(metrics)
         val height = metrics.heightPixels
@@ -97,6 +103,14 @@ class MainActivity : AppCompatActivity() {
                     binding.scanPlant.visibility = View.GONE
                 }, 150)
             fabOpened = false
+        }
+    }
+    fun internetIsConnected(): Boolean {
+        return try {
+            val command = "ping -c 1 google.com"
+            Runtime.getRuntime().exec(command).waitFor() == 0
+        } catch (e: Exception) {
+            false
         }
     }
 }
