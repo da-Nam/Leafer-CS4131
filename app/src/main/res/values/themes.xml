@@ -18,7 +18,7 @@
         <item name="android:windowBackground">#fefcf6</item>
     </style>
     <style name="Widget.Project.ActionBar" parent="Widget.Material3.BottomAppBar">
-        <item name="backgroundTint">#F096EAB6</item>
+        <item name="backgroundTint">#ACEAAA</item>
     </style>
     <style name="Widget.Project.Fab" parent="Widget.Material3.FloatingActionButton.Primary">
         <item name="backgroundTint">#ffe66e</item>
@@ -70,14 +70,17 @@
         <item name="cardBackgroundColor">#f5f4eb</item>
     </style>
     <style name="ProgressBar" parent="Theme.AndroidProject">
-        <item name="colorAccent">#ff00a7a8</item>
+        <item name="colorAccent">#528A3E</item>
     </style>
 
     <style name="Widget.Project.PlantConfirmationCardView" parent="Theme.AndroidProject">
         <item name="cardElevation">5dp</item>
         <item name="cardBackgroundColor">#f5f4eb</item>
     </style>
-
+    <style name="Widget.Project.PlantCardLayout" parent="Theme.AndroidProject">
+        <item name="cardElevation">5dp</item>
+        <item name="cardBackgroundColor">#f5f4eb</item>
+    </style>
 
 
 

@@ -2,10 +2,16 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="160dp"
     style="@style/Widget.Project.PlantConfirmationCardView"
     app:strokeWidth="0dp"
     android:layout_marginBottom="10dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat = "@drawable/cardbackground"
+        android:scaleType="fitXY"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,16 +20,20 @@
             android:id="@+id/confirm_plant_im"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_margin="12dp"/>
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="30dp"/>
         <LinearLayout
+            android:layout_marginTop="35dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="left">
         <TextView
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginLeft="110dp"
+            android:layout_marginLeft="60dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Unknown"
@@ -33,7 +43,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="60dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Percentage"

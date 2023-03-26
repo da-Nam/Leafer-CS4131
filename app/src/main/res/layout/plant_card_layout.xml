@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    style="@style/Widget.Project.PlantCardLayout"
+    app:strokeWidth="0dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat = "@drawable/cardbackground2"
+        android:scaleType="fitXY"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/plant_list_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:padding="4dp"
+            android:background="@drawable/ic_imageframe_plant"/>
+        <TextView
+            android:id="@+id/plant_list_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/adamina"
+            android:text="Unknown"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/plant_list_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat = "@drawable/ic_plantitem_menu"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="25dp"
+        android:scaleX="1.6"
+        android:scaleY="1.6"
+        android:background="@drawable/ic_imagebtn_background"
+        />
+</com.google.android.material.card.MaterialCardView>

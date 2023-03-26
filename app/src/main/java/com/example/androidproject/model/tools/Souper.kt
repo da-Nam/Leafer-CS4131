@@ -21,7 +21,7 @@ class Souper {
                 val doc = Jsoup.connect(url).get()
                 val el = doc.getElementsByAttribute("data-src")
                 if (!el.isEmpty()) {
-                    links = el[Random().nextInt(((el.size)/9))].attr("data-src")
+                    links = el[Random().nextInt(el.size/16)].attr("data-src")
                 }
             } catch (ex: IOException) {
                 ex.printStackTrace()

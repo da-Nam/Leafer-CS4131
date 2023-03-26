@@ -2,14 +2,19 @@ package com.example.androidproject
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.androidproject.databinding.ActivityMainBinding
@@ -22,10 +27,10 @@ import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private var fabOpened = false
     private lateinit var auth: FirebaseAuth
-    private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,83 +39,138 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("Main_Onboard_Pref", MODE_PRIVATE)
         setContentView(view)
 
-        if(sharedPreferences.getBoolean("first_time", true)) {
+
+        auth = Firebase.auth
+
+        if (sharedPreferences.getBoolean("first_time", true)) {
             val intent = Intent(this, OnboardingActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        binding.addPlantFab.setOnClickListener {
-            val intent = Intent(this, AddPlantsActivity::class.java)
-            startActivity(intent)
-        }
-        binding.scanPlantFab.setOnClickListener {
-            val intent = Intent(this, ScanPlantsActivity::class.java)
-            startActivity(intent)
-        }
+        if(isNetworkConnected()) {
+            findViewById<CoordinatorLayout>(R.id.content_main_view).visibility = View.VISIBLE
+            binding.fab.isClickable = true
+            binding.bottomNavigationView.visibility = View.VISIBLE
+            binding.noInternetLayout.visibility = View.GONE
+
+            binding.addPlantFab.setOnClickListener {
+                val intent = Intent(this, AddPlantsActivity::class.java)
+                startActivity(intent)
+            }
+            binding.scanPlantFab.setOnClickListener {
+                val intent = Intent(this, ScanPlantsActivity::class.java)
+                startActivity(intent)
+            }
 
 
-        //get Firebase auth
-        auth = Firebase.auth
+            //get Firebase auth
+            val navController = findNavController(R.id.nav_host_fragment_content_main)
+            setSupportActionBar(binding.bottomAppToolBar)
+            binding.bottomNavigationView.setupWithNavController(navController)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        setSupportActionBar(binding.bottomAppToolBar)
-        binding.bottomNavigationView.setupWithNavController(navController)
+            binding.fab.setOnClickListener {
+                animateFabMenu(true)
+            }
+            view.setOnClickListener {
+                animateFabMenu(false)
+            }
+        } else {
+            findViewById<CoordinatorLayout>(R.id.content_main_view).visibility = View.GONE
+            binding.fab.isClickable = false
+            binding.bottomNavigationView.visibility = View.GONE
+            binding.noInternetLayout.visibility = View.VISIBLE
 
-        binding.fab.setOnClickListener {
-            animateFabMenu(true)
-        }
-        view.setOnClickListener {
-            animateFabMenu(false)
+            binding.reloadWifiBtn.setOnClickListener() {
+                recreate()
+            }
         }
     }
 
     override fun onStart() {
         super.onStart()
-        val currentUser = auth.currentUser
-        if(currentUser == null && !(sharedPreferences.getBoolean("first_time", true))){
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+        if(isNetworkConnected()) {
+            val currentUser = auth.currentUser
+            if (currentUser == null && !(sharedPreferences.getBoolean("first_time", true))) {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
-    fun animateFabMenu(b : Boolean) {
+    fun animateFabMenu(b: Boolean) {
         val metrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(metrics)
         val height = metrics.heightPixels
         val rotationAnimator = ObjectAnimator.ofFloat(binding.fab, "rotation", 0f, 45f)
         rotationAnimator.duration = 250L
-        val addPlantAnimator = ObjectAnimator.ofFloat(binding.addPlant, "translationY", 0f, (-((height.toFloat()/binding.fab.height.toFloat())* 25)))
+        val addPlantAnimator = ObjectAnimator.ofFloat(
+            binding.addPlant,
+            "translationY",
+            0f,
+            (-((height.toFloat() / binding.fab.height.toFloat()) * 25))
+        )
         addPlantAnimator.duration = 350L
-        val scanPlantAnimator = ObjectAnimator.ofFloat(binding.scanPlant, "translationY", 0f, (-((height.toFloat()/binding.fab.height.toFloat())* 37)))
+        val scanPlantAnimator = ObjectAnimator.ofFloat(
+            binding.scanPlant,
+            "translationY",
+            0f,
+            (-((height.toFloat() / binding.fab.height.toFloat()) * 37))
+        )
         scanPlantAnimator.duration = 350L
         val animatorSet = AnimatorSet()
         animatorSet.play(addPlantAnimator).with(scanPlantAnimator).after(rotationAnimator)
 
-        if(!fabOpened && b) {
-            animatorSet.start()
 
+
+        if (!fabOpened && b) {
+            animatorSet.start()
             fabOpened = true
+
+            binding.shadowView.apply {
+                alpha = 0f
+                visibility = View.VISIBLE
+
+                animate().alpha(0.4f).duration = 250
+            }
 
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.addPlant.visibility = View.VISIBLE
                 binding.scanPlant.visibility = View.VISIBLE
             }, 200)
-        } else if(fabOpened){
-                animatorSet.reverse()
-                Handler(Looper.getMainLooper()).postDelayed({
-                    binding.addPlant.visibility = View.GONE
-                    binding.scanPlant.visibility = View.GONE
-                }, 150)
+        } else if (fabOpened) {
+            animatorSet.reverse()
             fabOpened = false
+
+            binding.shadowView.apply {
+                visibility = View.VISIBLE
+                alpha = 0.4f
+
+                animate().alpha(0f).setDuration(250).withEndAction {
+                    visibility = View.GONE
+                }
+            }
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.addPlant.visibility = View.GONE
+                binding.scanPlant.visibility = View.GONE
+            }, 150)
         }
     }
-    fun internetIsConnected(): Boolean {
-        return try {
-            val command = "ping -c 1 google.com"
-            Runtime.getRuntime().exec(command).waitFor() == 0
-        } catch (e: Exception) {
-            false
-        }
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setTitle("Really Exit?")
+            .setMessage("Are you sure you want to exit application?")
+            .setPositiveButton("Yes",
+                DialogInterface.OnClickListener { dialog, which -> finish() })
+            .setNegativeButton("No", null)
+            .show()
+    }
+
+    //Checks if network is connected
+    private fun isNetworkConnected(): Boolean {
+        val cm = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return cm.activeNetworkInfo != null
     }
 }

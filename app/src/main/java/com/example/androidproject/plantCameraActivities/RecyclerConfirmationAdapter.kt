@@ -16,12 +16,12 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class RecyclerConfirmationAdapter(private val context : Context, private val recogList: ArrayList<Pair<String, Pair<Int, Uri>>>,
-                                  private val plantChosenListener: (String) -> Unit)
+                                  private val plantChosenListener: (String, String) -> Unit)
     : RecyclerView.Adapter<RecyclerConfirmationAdapter.ItemViewHolder>() {
     inner class ItemViewHolder(private val confirmItemView : View) : RecyclerView.ViewHolder(confirmItemView) {
-        val plantImage : ImageView = confirmItemView.findViewById(R.id.confirm_plant_im)
-        val plantName : TextView = confirmItemView.findViewById(R.id.confirm_plant_name)
-        val plantPercent : TextView = confirmItemView.findViewById(R.id.confirm_plant_percent)
+        private val plantImage : ImageView = confirmItemView.findViewById(R.id.confirm_plant_im)
+        private val plantName : TextView = confirmItemView.findViewById(R.id.confirm_plant_name)
+        private val plantPercent : TextView = confirmItemView.findViewById(R.id.confirm_plant_percent)
 
         fun theAllBinding(plant : Pair<String, Pair<Int, Uri>>) {
             //Get a random plant name image onto confirmation list
@@ -36,7 +36,7 @@ class RecyclerConfirmationAdapter(private val context : Context, private val rec
             plantPercent.text = "Percentage: ${plant.second.first}%"
 
             itemView.setOnClickListener {
-                plantChosenListener(plant.first)
+                plantChosenListener(plant.first, plant.second.second.toString())
             }
         }
 

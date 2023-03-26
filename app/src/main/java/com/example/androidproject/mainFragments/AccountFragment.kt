@@ -78,6 +78,8 @@ class AccountFragment : Fragment() {
         super.onStart()
         val user = auth.currentUser
         updatePfp()
+        binding.noOfPlant.text = PlantFragment.getPlantNumber().toString()
+
     }
 
     override fun onDestroy() {

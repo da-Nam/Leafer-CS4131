@@ -17,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidproject.databinding.ActivityLoginBinding
+import com.example.androidproject.model.PlantItem
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -92,6 +93,8 @@ class LoginActivity : AppCompatActivity() {
         reText.text = ss1
         reText.movementMethod = LinkMovementMethod.getInstance()
         //endregion
+
+
 
         clearFields()
         confirmBtn.setOnClickListener {

@@ -11,9 +11,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.androidproject.databinding.ActivityUserDetailsBinding
+import com.example.androidproject.model.PlantItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
@@ -45,6 +47,9 @@ class UserDetailsActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
         })
 
+        val currentUser = auth.currentUser
+        val db = Firebase.firestore
+
         binding.confirmBtn.setOnClickListener {
             if(binding.usernameText.text.toString().isNotEmpty() && imageURL.text.toString().isNotEmpty()) {
                 val user = auth.currentUser
@@ -56,6 +61,10 @@ class UserDetailsActivity : AppCompatActivity() {
                 user!!.updateProfile(profileUpdates)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            val userPlantData = hashMapOf(
+                                "plantList" to arrayListOf<PlantItem>()
+                            )
+                            db.collection("users").document(currentUser!!.uid).set(userPlantData)
                             finish()
                         }
                     }

@@ -9,8 +9,15 @@ import android.os.StrictMode
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidproject.databinding.ActivityPlantConfirmationBinding
+import com.example.androidproject.model.PlantItem
 import com.example.androidproject.model.tools.Souper
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+
+import com.google.firebase.ktx.Firebase
 import java.io.FileInputStream
+import java.util.Objects
 
 
 class PlantConfirmationActivity : AppCompatActivity() {
@@ -26,6 +33,7 @@ class PlantConfirmationActivity : AppCompatActivity() {
         //val bitmapIm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
         val rotationDegree = intent.getFloatExtra("imageRotation", 0f)
         val recyclerView = binding.confirmRecyclerview
+
 
         //binding.plantImage.setImageBitmap(bitmapIm)
         //binding.plantImage.rotation = rotationDegree
@@ -53,9 +61,18 @@ class PlantConfirmationActivity : AppCompatActivity() {
                 url = Souper.getGoogImageUri(name)!!
             plantDetectedList.add(Pair(name, Pair(intent.getIntExtra("percent$i",0), Uri.parse(url))))
         }
+
+        val auth = Firebase.auth
+        val currentUser = auth.currentUser
+        val db = Firebase.firestore
+
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = RecyclerConfirmationAdapter(applicationContext, plantDetectedList) {
-            println("$it was chosen")
+        recyclerView.adapter = RecyclerConfirmationAdapter(applicationContext, plantDetectedList) { name, uri ->
+            val userPlantsRef = db.collection("users").document(currentUser!!.uid)
+            val chosenPlant = PlantItem(name, uri)
+            userPlantsRef.update("plantList", FieldValue.arrayUnion(chosenPlant))
+            //println("$name added")
+            finish()
         }
     }
 }

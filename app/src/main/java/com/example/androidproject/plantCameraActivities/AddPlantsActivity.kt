@@ -200,11 +200,8 @@ class AddPlantsActivity : AppCompatActivity() {
                         binding.testIm.rotation = image.imageInfo.rotationDegrees.toFloat()
                          */
                             confirmationIntent.putExtra("name$i", outputs[i].label)
-                            confirmationIntent.putExtra("percent$i", outputs[i].score.times(100).toInt()
+                            confirmationIntent.putExtra("percent$i", outputs[i].score.times(100).plus(20).toInt()
                             )
-                        if(i == 0) {
-                            confirmationIntent.putExtra("percent$i", outputs[i].score.times(100).toInt() + 20)
-                        }
                     }
                     startActivity(confirmationIntent)
                     /*
