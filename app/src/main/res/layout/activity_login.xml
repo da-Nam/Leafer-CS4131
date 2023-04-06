@@ -43,7 +43,7 @@
                     android:fontFamily="@font/lato"
                     android:padding="15dp"
                     android:id="@+id/banner_text"
-                    android:text="Sign in to Leafer!"
+                    android:text="Sign-in to Leafer!"
                     android:textSize="30dp"
                     android:textStyle="bold" />
 

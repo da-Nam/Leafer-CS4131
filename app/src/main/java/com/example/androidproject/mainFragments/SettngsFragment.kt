@@ -18,6 +18,9 @@ class SettngsFragment : Fragment() {
     ): View? {
         _binding = FragmentSettngsBinding.inflate(inflater, container, false)
         val view  = binding.root
+        binding.aboutApplicationBtn.setOnClickListener {
+
+        }
         return view
     }
 

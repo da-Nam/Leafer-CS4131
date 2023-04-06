@@ -64,23 +64,23 @@ class LoginActivity : AppCompatActivity() {
         confirmBtn = binding.confirmBtn
 
         //region Spannable text string for changing between sign in and sign up
-        var ss = SpannableString("Don't have an account? Sign up now!")
-        var ss1 = SpannableString("Have an account? Sign in now!")
+        var ss = SpannableString("Don't have an account? Sign-up now!")
+        var ss1 = SpannableString("Have an account? Sign-in now!")
         val spanClick = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 if(loginScreen) {
                     regisLayout.visibility = View.VISIBLE
                     logText.visibility = View.GONE
                     reText.visibility = View.VISIBLE
-                    bannerText.text = "Sign up for Leafer!"
-                    confirmBtn.text = "Sign up"
+                    bannerText.text = "Sign-up for Leafer!"
+                    confirmBtn.text = "Sign-up"
                     loginScreen = false
                 } else {
                     regisLayout.visibility = View.GONE
                     logText.visibility = View.VISIBLE
                     reText.visibility = View.GONE
-                    bannerText.text = "Sign in to Leafer!"
-                    confirmBtn.text = "Sign in"
+                    bannerText.text = "Sign-in to Leafer!"
+                    confirmBtn.text = "Sign-in"
                     clearFields()
                     loginScreen = true
                 }
@@ -112,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w("FIREBASE_AUTH", "signInWithEmail:failure", task.exception)
-                                Toast.makeText(applicationContext, "Sign in failed, re-enter the fields correctly!",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext, "Sign-in failed, re-enter the fields correctly!",Toast.LENGTH_SHORT).show()
                             }
                         }
                 } else {

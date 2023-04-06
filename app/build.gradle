@@ -57,10 +57,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
 
-    //Splashscreen library
-    implementation "androidx.core:core-splashscreen:1.0.0"
-
-
     implementation 'com.google.firebase:firebase-ml-modeldownloader-ktx'
 
     //TensorFlow Lite library
@@ -99,6 +95,8 @@ dependencies {
     implementation "androidx.camera:camera-view:${camerax_version}"
     implementation "androidx.camera:camera-mlkit-vision:${camerax_version}"
     implementation "androidx.camera:camera-extensions:${camerax_version}"
+
+    //Preference Activity Fixes
 
     //Glide library
     implementation 'com.github.bumptech.glide:glide:4.15.0'

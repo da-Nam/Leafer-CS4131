@@ -1,5 +1,6 @@
 package com.example.androidproject.mainFragments
 
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -26,6 +27,7 @@ class AccountFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var auth: FirebaseAuth
+    private var logoutShown = false
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -46,6 +48,25 @@ class AccountFragment : Fragment() {
         }
         binding.pfpIm.setOnClickListener {
             handlePfpChange()
+        }
+        binding.logOutBtn.setOnClickListener {
+            auth.signOut()
+            requireActivity().recreate()
+        }
+        binding.showLogoutBtn.setOnClickListener {
+            val rotationAnimator = ObjectAnimator.ofFloat(binding.showLogoutBtn, "rotation", 0f, 180f)
+
+            if(logoutShown) {
+                rotationAnimator.reverse()
+                binding.logOutBtn.visibility = View.GONE
+                binding.logOutDivider.visibility = View.GONE
+                logoutShown = false
+            } else {
+                rotationAnimator.start()
+                binding.logOutBtn.visibility = View.VISIBLE
+                binding.logOutDivider.visibility = View.VISIBLE
+                logoutShown = true
+            }
         }
         return view
     }

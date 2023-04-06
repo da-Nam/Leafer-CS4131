@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".mainFragments.AccountFragment">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_sv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -17,14 +19,17 @@
             android:layout_gravity="top"
             app:strokeWidth="0dp"
             style="@style/Widget.Project.AccountCard"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:animateLayoutChanges="true">
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -55,6 +60,7 @@
                     android:textAlignment="center"
                     android:textSize="40dp" />
 
+
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -62,11 +68,13 @@
                     app:dividerColor="#496727"
                     android:layout_marginRight="15dp" />
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:animateLayoutChanges="true">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -74,7 +82,10 @@
                         android:text="Plants"
                         android:layout_gravity="center_horizontal"
                         android:textAlignment="center"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
+                   <FrameLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/no_of_plant"
                         android:layout_width="match_parent"
@@ -83,8 +94,50 @@
                         android:text="0"
                         android:layout_gravity="center_horizontal"
                         android:textAlignment="center"
-                        android:textSize="40dp" />
+                        android:textSize="40sp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/show_logout_btn"
+                        app:iconPadding="0dp"
+                        android:padding="0dp"
+                        android:minHeight="48dp"
+                        app:elevation="3dp"
+                        app:iconSize="35dp"
+                        android:minWidth="48dp"
+                        app:iconGravity="textStart"
+                        app:strokeWidth="0dp"
+                        android:insetBottom="0dp"
+                        android:layout_margin="8dp"
+                        android:insetLeft="0dp"
+                        android:insetRight="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        app:cornerRadius="50dp"
+                        app:icon="@drawable/ic_downarrow_acc"
+                        style="@style/Widget.Project.showLogOut"
+                        tools:ignore="RtlHardcoded" />
+                   </FrameLayout>
 
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/log_out_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        app:dividerColor="#496727"
+                        android:layout_marginRight="15dp"
+                        android:visibility="gone"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/log_out_btn"
+                        style="@style/Themes.Project.LogOutButton"
+                        android:textSize="20sp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="Log Out"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone"/>
                 </LinearLayout>
             </LinearLayout>
 

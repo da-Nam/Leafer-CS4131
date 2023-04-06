@@ -130,10 +130,10 @@
         </LinearLayout>
 
     <LinearLayout
+        style="@style/Themes.Project.NotesLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#fefcf6"
         android:layout_gravity="bottom"
         android:gravity="bottom|center">
         <com.google.android.material.divider.MaterialDivider

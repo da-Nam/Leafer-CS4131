@@ -13,8 +13,10 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
+import com.example.androidproject.R
 import com.example.androidproject.databinding.ActivityPlantNotesBinding
 import com.example.androidproject.model.PlantItem
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
@@ -55,8 +57,8 @@ class PlantNotesActivity : AppCompatActivity() {
 
         binding.notesReturnBtn.setOnClickListener {
             if(notesChanged) {
-                AlertDialog.Builder(this)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                MaterialAlertDialogBuilder(this)
+                    .setIcon(R.drawable.ic_notes_alert)
                     .setTitle("Unsaved changes have been made")
                     .setMessage("Do you want to save before returning?")
                     .setPositiveButton("Yes") { _, _ ->
