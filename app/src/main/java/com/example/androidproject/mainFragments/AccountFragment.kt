@@ -67,7 +67,7 @@ class AccountFragment : Fragment() {
                     .with(requireContext())
                     .load(photoUrl)
                     .centerCrop()
-                    .into(binding.pfpIm);
+                    .into(binding.pfpIm)
             }
         } else {
             binding.pfpIm.setImageResource(R.drawable.ic_default_pfp)

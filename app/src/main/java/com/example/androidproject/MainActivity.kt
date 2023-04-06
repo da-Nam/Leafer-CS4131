@@ -1,20 +1,26 @@
 package com.example.androidproject
 
+import android.Manifest
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.androidproject.databinding.ActivityMainBinding
@@ -40,6 +46,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS), 100);
+        }
+
         auth = Firebase.auth
 
         if (sharedPreferences.getBoolean("first_time", true)) {
@@ -57,10 +68,12 @@ class MainActivity : AppCompatActivity() {
             binding.addPlantFab.setOnClickListener {
                 val intent = Intent(this, AddPlantsActivity::class.java)
                 startActivity(intent)
+                animateFabMenu(false)
             }
             binding.scanPlantFab.setOnClickListener {
                 val intent = Intent(this, ScanPlantsActivity::class.java)
                 startActivity(intent)
+                animateFabMenu(false)
             }
 
 
@@ -97,6 +110,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     fun animateFabMenu(b: Boolean) {
         val metrics = DisplayMetrics()

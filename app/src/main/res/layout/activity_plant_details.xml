@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".plantHandling.PlantDetails">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/image_plant"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"/>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    app:shapeAppearanceOverlay="@style/Widget.Project.PlantDetailsCardLayout"
+                    style="@style/Widget.Project.PlantDetailsCardLayout">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                    <TextView
+                        android:id="@+id/plant_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/adamina"
+                        android:text="unknown"
+                        android:textSize="30sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/wiki_btn"
+                            app:iconPadding="0dp"
+                            android:padding="0dp"
+                            android:minHeight="48dp"
+                            app:elevation="3dp"
+                            android:layout_marginTop="10dp"
+                            app:iconSize="25dp"
+                            android:minWidth="48dp"
+                            app:iconGravity="textStart"
+                            app:strokeWidth="0dp"
+                            android:insetBottom="0dp"
+                            android:insetLeft="0dp"
+                            android:insetRight="0dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            app:cornerRadius="50dp"
+                            app:icon="@drawable/ic_extermal"
+                            style="@style/Widget.Project.WikiStyle"
+                            tools:ignore="RtlHardcoded" />
+
+                    </LinearLayout>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/leave_btn"
+                        app:iconPadding="0dp"
+                        android:padding="0dp"
+                        android:minHeight="48dp"
+                        app:elevation="3dp"
+                        android:layout_marginTop="5dp"
+                        app:iconSize="35dp"
+                        android:minWidth="48dp"
+                        app:iconGravity="textStart"
+                        app:strokeWidth="0dp"
+                        android:insetBottom="0dp"
+                        android:insetLeft="0dp"
+                        android:insetRight="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|end"
+                        app:cornerRadius="50dp"
+                        app:icon="@drawable/ic_cancel"
+                        style="@style/Widget.Project.WikiStyle"
+                        tools:ignore="RtlHardcoded" />
+
+                </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
+
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                app:dividerColor="#496727" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="25dp"
+                android:text="Reminders:"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reminders_list"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="25dp"
+                android:text="Notes:"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:id="@+id/plant_notes"
+                android:textSize="20dp"
+                android:text="This plant is a very cool looking plant species that has placeholder"
+                android:scrollbars="vertical"
+                />
+
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fefcf6"
+        android:layout_gravity="bottom"
+        android:gravity="bottom|center">
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:dividerColor="#496727" />
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="12dp"
+            app:icon="@drawable/ic_plantnotes"
+            android:text="Open Plant Notes"
+            android:id="@+id/open_plant_notes_btn"
+            android:textSize="20dp"
+            app:cornerRadius="10dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/delete_button"
+
+        app:iconPadding="0dp"
+        android:padding="0dp"
+        android:minHeight="48dp"
+        app:elevation="3dp"
+        android:layout_margin="10dp"
+        app:iconSize="50dp"
+        android:minWidth="48dp"
+        app:iconGravity="textStart"
+        app:strokeWidth="0dp"
+        android:insetBottom="0dp"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        app:iconTint="#ff5959"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        app:cornerRadius="50dp"
+        app:icon="@drawable/baseline_restore_from_trash_24"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        tools:ignore="RtlHardcoded" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

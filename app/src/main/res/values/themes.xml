@@ -13,7 +13,6 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="colorSecondaryContainer">#746CE89C</item>
-        <item name="fontFamily">@font/lato</item>
 
         <item name="android:windowBackground">#fefcf6</item>
     </style>
@@ -81,7 +80,36 @@
         <item name="cardElevation">5dp</item>
         <item name="cardBackgroundColor">#f5f4eb</item>
     </style>
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="Widget.Project.ReminderCardLayout" parent="Theme.AndroidProject">
+        <item name="cardElevation">0dp</item>
+        <item name="cardCornerRadius">0dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cardBackgroundColor">#fefcf6</item>
 
+    </style>
 
+    <style name="Widget.Project.PlantDetailsCardLayout" parent="Theme.AndroidProject">
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">#fefcf6</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">15dp</item>
+        <item name="cornerSizeTopLeft">15dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>    </style>
 
+    <style name="Widget.Project.WikiStyle" parent="Widget.Material3.Button.OutlinedButton">
+        <item   name="iconTint">@color/black</item>
+
+    </style>
+    <style name="Widget.Project.CamBackStyle" parent="Widget.Material3.Button.OutlinedButton">
+        <item   name="iconTint">@color/white</item>
+    </style>
+    <style name="Widget.Project.NotesBackStyle" parent="Widget.Material3.Button.OutlinedButton">
+        <item   name="iconTint">#20402D</item>
+    </style>
 </resources>

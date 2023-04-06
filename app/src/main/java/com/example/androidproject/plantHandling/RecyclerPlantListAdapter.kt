@@ -25,14 +25,14 @@ class RecyclerPlantListAdapter(private val context : Context, private val plantL
 
         fun theAllBinding(plant : PlantItem) {
             val isdaname = "${plant.name!!.substring(0, 1).uppercase(Locale.ROOT)}${plant.name!!.substring(1).lowercase(Locale.ROOT)}"
-            plantName.text = isdaname;
+            plantName.text = isdaname
             Glide
                 .with(context)
                 .load(plant.url)
                 .centerCrop()
                 .into(plantImage)
             plantBtn.setOnClickListener {
-                plantChosenListener(PlantItem())
+                plantChosenListener(plant)
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.androidproject.mainFragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.example.androidproject.MainActivity
 import com.example.androidproject.databinding.FragmentPlantBinding
 import com.example.androidproject.model.PlantItem
 import com.example.androidproject.model.PlantItemList
+import com.example.androidproject.plantHandling.PlantDetails
 import com.example.androidproject.plantHandling.RecyclerPlantListAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -21,6 +23,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import java.io.Serializable
 
 
 class PlantFragment : Fragment() {
@@ -35,7 +38,6 @@ class PlantFragment : Fragment() {
         }
     }
     private lateinit var recyclerView : RecyclerView
-    private lateinit var adapter: RecyclerPlantListAdapter
 
 
 
@@ -54,6 +56,10 @@ class PlantFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = RecyclerPlantListAdapter(requireContext(), listOPlants) {
             println("I have been clicked uwu!")
+            val intent = Intent(requireContext(), PlantDetails::class.java)
+            intent.putExtra("plant_object", it)
+            startActivity(intent)
+
         }
         recyclerView.setOnTouchListener { _, _ ->
             (activity as MainActivity).animateFabMenu(false)
@@ -83,6 +89,7 @@ class PlantFragment : Fragment() {
                         if(document.exists()) {
                             listOPlants.clear()
                             listOPlants.addAll(document.toObject(PlantItemList::class.java)!!.plantList)
+                            listOPlants.reverse()
                             recyclerView.adapter!!.notifyDataSetChanged()
                             binding.progressBar.visibility = View.GONE
                         }

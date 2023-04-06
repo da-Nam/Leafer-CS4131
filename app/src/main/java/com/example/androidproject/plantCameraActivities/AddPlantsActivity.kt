@@ -65,6 +65,10 @@ class AddPlantsActivity : AppCompatActivity() {
             )
         }
 
+        binding.wantReturnBtn.setOnClickListener {
+            finish()
+        }
+
         // Set up the listeners for take photo and video capture buttons
         binding.plantAddBtn.setOnClickListener {takePhoto()}
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -200,7 +204,8 @@ class AddPlantsActivity : AppCompatActivity() {
                         binding.testIm.rotation = image.imageInfo.rotationDegrees.toFloat()
                          */
                             confirmationIntent.putExtra("name$i", outputs[i].label)
-                            confirmationIntent.putExtra("percent$i", outputs[i].score.times(100).plus(20).toInt()
+                            confirmationIntent.putExtra(
+                                "percent$i", outputs[i].score.times(100).plus(20).toInt()
                             )
                     }
                     startActivity(confirmationIntent)

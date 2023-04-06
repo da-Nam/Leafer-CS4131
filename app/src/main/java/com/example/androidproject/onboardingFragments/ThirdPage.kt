@@ -24,6 +24,7 @@ class ThirdPage : Fragment() {
         binding.startButton.setOnClickListener {
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
+            requireActivity().finish()
         }
 
         return view

@@ -76,6 +76,8 @@ dependencies {
 
     //Jsoup
     implementation 'org.jsoup:jsoup:1.15.4'
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.4.0'
+    implementation 'androidx.preference:preference:1.2.0'
 
 
     testImplementation 'junit:junit:4.13.2'
@@ -101,5 +103,11 @@ dependencies {
     //Glide library
     implementation 'com.github.bumptech.glide:glide:4.15.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+
+    implementation "androidx.preference:preference:1.2.0"
+    implementation "androidx.preference:preference-ktx:1.2.0"
+
+
+    //Optimal Impementation of Single Date and Time Picker
 
 }

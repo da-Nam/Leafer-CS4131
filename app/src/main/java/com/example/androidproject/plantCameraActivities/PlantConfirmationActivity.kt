@@ -58,7 +58,7 @@ class PlantConfirmationActivity : AppCompatActivity() {
         for(i in 0 until 3) {
             val name = intent.getStringExtra("name$i")!!
             var url = ""
-                url = Souper.getGoogImageUri(name)!!
+            url = Souper.getGoogImageUri(name)!!
             plantDetectedList.add(Pair(name, Pair(intent.getIntExtra("percent$i",0), Uri.parse(url))))
         }
 
