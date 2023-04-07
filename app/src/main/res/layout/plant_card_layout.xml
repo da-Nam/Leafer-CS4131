@@ -4,16 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     style="@style/Widget.Project.PlantCardLayout"
-    app:strokeWidth="0dp"
-    android:layout_marginBottom="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat = "@drawable/cardbackground3"
-        android:scaleType="fitXY"
-        />
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:id="@+id/plant_item_card_view"
+    android:layout_marginRight="5dp">
     <ImageView
         android:id="@+id/plant_list_image"
         android:layout_width="150dp"
@@ -32,21 +26,33 @@
             android:layout_marginTop="5dp"
             android:fontFamily="sans-serif-light"
             android:text="Unknown"
-            android:textColor="@color/black"
             android:textSize="30sp" />
 
-        <ImageButton
-            android:id="@+id/plant_list_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            app:srcCompat = "@drawable/ic_plant_edit"
-            android:layout_marginTop="80dp"
-            android:scaleX="1.6"
-            android:scaleY="1.6"
-            android:background="@drawable/ic_imagebtn_background"
-            />
+
 
     </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.Project.PlantDetailButtonStyle"
+        android:id="@+id/plant_list_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        app:icon = "@drawable/ic_plant_edit"
+        android:layout_gravity="bottom"
+        app:iconPadding="0dp"
+        android:padding="0dp"
+        android:minHeight="48dp"
+        app:elevation="3dp"
+        app:iconSize="25dp"
+        android:minWidth="48dp"
+        app:iconGravity="textStart"
+        app:strokeWidth="0dp"
+        android:insetBottom="0dp"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        android:scaleX="1.6"
+        android:scaleY="1.6"
+        android:background="@drawable/ic_imagebtn_background"
+        />
 
 </com.google.android.material.card.MaterialCardView>

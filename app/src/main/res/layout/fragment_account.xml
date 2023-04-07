@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     tools:context=".mainFragments.AccountFragment">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/leaferapplogo"
+        android:text="@string/hello_blank_fragment" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_sv"
@@ -13,13 +22,13 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true">
 
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            app:strokeWidth="0dp"
             style="@style/Widget.Project.AccountCard"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:animateLayoutChanges="true">
 
 
@@ -65,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    app:dividerColor="#496727"
+                    app:dividerColor="@color/text_gray"
                     android:layout_marginRight="15dp" />
 
 
@@ -123,7 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        app:dividerColor="#496727"
+                        app:dividerColor="@color/text_gray"
                         android:layout_marginRight="15dp"
                         android:visibility="gone"/>
 
@@ -140,8 +149,9 @@
                         android:visibility="gone"/>
                 </LinearLayout>
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
     </androidx.core.widget.NestedScrollView>
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

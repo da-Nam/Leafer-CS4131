@@ -11,6 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.example.androidproject.R
@@ -21,6 +22,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class PlantNotesActivity : AppCompatActivity() {
 
@@ -32,6 +34,7 @@ class PlantNotesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =  ActivityPlantNotesBinding.inflate(layoutInflater)
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
         setContentView(binding.root)
 
         daPlant = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -40,7 +43,10 @@ class PlantNotesActivity : AppCompatActivity() {
             intent.getParcelableExtra<PlantItem>("plant_object_notes")
         }!!
         binding.userPlantNotes.setText(daPlant.note)
-        binding.plantNameNotesText.text = "Notes: ${daPlant.name}"
+        val isdaname = "${daPlant.name!!.substring(0, 1).uppercase(Locale.ROOT)}${
+            daPlant.name!!.substring(1).lowercase(Locale.ROOT)
+        }"
+        binding.plantNameNotesText.text = "Notes: $isdaname"
 
         val auth = Firebase.auth
         val currentUser = auth.currentUser
@@ -74,6 +80,7 @@ class PlantNotesActivity : AppCompatActivity() {
                         val userPlantsRef = db.collection("users").document(currentUser!!.uid)
                         userPlantsRef.update("plantList", FieldValue.arrayRemove(daPlant))
                         userPlantsRef.update("plantList", FieldValue.arrayUnion(newDaPlant))
+                        Toast.makeText(applicationContext, "Notes saved for $isdaname", Toast.LENGTH_SHORT).show()
                         finish()
                     }
                     .setNegativeButton("No") {_, _ ->
@@ -94,6 +101,7 @@ class PlantNotesActivity : AppCompatActivity() {
             val userPlantsRef = db.collection("users").document(currentUser!!.uid)
             userPlantsRef.update("plantList", FieldValue.arrayRemove(daPlant))
             userPlantsRef.update("plantList", FieldValue.arrayUnion(newDaPlant))
+            Toast.makeText(applicationContext, "Notes saved for $isdaname", Toast.LENGTH_SHORT).show()
             notesChanged = false
         }
 

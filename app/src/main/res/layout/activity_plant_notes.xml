@@ -12,14 +12,14 @@
         android:layout_height="match_parent"
         android:inputType="textMultiLine"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="80dp"
         android:ems="10"
         android:padding="10dp"
         android:singleLine="false"
         android:text=""
-        android:background="#F7FFFEF0"
+        style="@style/Themes.Project.NotesEditText"
         android:gravity="top|start"/>
     <LinearLayout
         android:layout_width="match_parent"

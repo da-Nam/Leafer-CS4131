@@ -34,7 +34,6 @@
                 android:layout_marginRight="10dp"
                 android:requiresFadingEdge="none"
                 android:animateLayoutChanges="true"
-                app:strokeWidth="0dp"
                 app:shapeAppearanceOverlay="@style/Widget.Project.cutCardView">
 
                 <TextView
@@ -44,7 +43,8 @@
                     android:padding="15dp"
                     android:id="@+id/banner_text"
                     android:text="Sign-in to Leafer!"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/background_black"
                     android:textStyle="bold" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -57,7 +57,6 @@
                 android:animateLayoutChanges="true"
                 android:requiresFadingEdge="none"
                 android:layout_marginBottom="15dp"
-                app:strokeWidth="0dp"
                 style="@style/Widget.Project.LoginBodyCardView"
                 app:shapeAppearanceOverlay="@style/Widget.Project.cutTopCardView">
 
@@ -141,6 +140,7 @@
                         android:textSize="15dp" />
 
                     <com.google.android.material.button.MaterialButton
+                        style="@style/Themes.Project.SignInButton"
                         android:id="@+id/confirm_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

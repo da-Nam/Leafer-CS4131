@@ -33,7 +33,8 @@
                     android:padding="15dp"
                     android:id="@+id/banner_text"
                     android:text="Confirm your plant!"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/background_black"
                     android:textStyle="bold" />
             </com.google.android.material.card.MaterialCardView>
 

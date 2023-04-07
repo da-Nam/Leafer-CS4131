@@ -5,4 +5,6 @@
 
     <string name="scan_plant">Scan Plants</string>
     <string name="add_plant">Add Plants</string>
+    <string name="greeting">Welcome to Leafer!</string>
+    <string name="onboading_subheading">A Plant Journal made with enthusiasts of varying skill levels in mind</string>
 </resources>

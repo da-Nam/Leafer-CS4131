@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <com.google.android.material.button.MaterialButton
+            style="@style/Themes.Project.SignInButton"
             android:id="@+id/startButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

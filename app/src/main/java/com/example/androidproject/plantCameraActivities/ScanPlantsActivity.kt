@@ -1,16 +1,13 @@
 package com.example.androidproject.plantCameraActivities
 
 import android.Manifest
-import android.content.ContentValues
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.ImageCapture
-import androidx.camera.video.Recorder
-import androidx.camera.video.Recording
-import androidx.camera.video.VideoCapture
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.util.concurrent.ExecutorService
@@ -20,21 +17,17 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.core.Preview
 import androidx.camera.core.CameraSelector
 import android.util.Log
+import android.view.View
 import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
-import androidx.camera.video.FallbackStrategy
-import androidx.camera.video.MediaStoreOutputOptions
-import androidx.camera.video.Quality
-import androidx.camera.video.QualitySelector
-import androidx.camera.video.VideoRecordEvent
-import androidx.core.content.PermissionChecker
+import androidx.camera.view.PreviewView
 import com.example.androidproject.databinding.ActivityScanPlantsBinding
-import java.nio.ByteBuffer
-import java.text.SimpleDateFormat
-import java.util.Locale
-
-
+import com.example.androidproject.model.tools.GraphicOverlay
+import com.example.androidproject.model.tools.ObjectGraphic
+import com.google.mlkit.common.model.LocalModel
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.objects.ObjectDetection
+import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 
 
 class ScanPlantsActivity : AppCompatActivity() {
@@ -43,6 +36,10 @@ class ScanPlantsActivity : AppCompatActivity() {
 
 
     private var imageCapture: ImageCapture? = null
+    private var graphicOverlay: GraphicOverlay? = null
+    private var previewView: PreviewView? = null
+
+
 
     private lateinit var cameraExecutor: ExecutorService
 
@@ -74,12 +71,22 @@ class ScanPlantsActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
+        binding.wantReturnBtn.setOnClickListener {
+            finish()
+        }
+        previewView = binding.viewFinder
+        graphicOverlay = binding.graphicOverlayy
 
-        // Set up the listeners for take photo and video capture buttons
-        binding.imageCaptureButton.setOnClickListener { takePhoto() }
+
+
         cameraExecutor = Executors.newSingleThreadExecutor()
 
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.hintText.visibility = View.VISIBLE
     }
     override fun onDestroy() {
         super.onDestroy()
@@ -105,50 +112,6 @@ class ScanPlantsActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun takePhoto() {
-        // Get a stable reference of the modifiable image capture use case
-        val imageCapture = imageCapture ?: return
-
-        // Create time stamped name and MediaStore entry.
-        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
-            .format(System.currentTimeMillis())
-        val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
-            }
-        }
-
-        // Create output options object which contains file + metadata
-        val outputOptions = ImageCapture.OutputFileOptions
-            .Builder(contentResolver,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                contentValues)
-            .build()
-
-        // Set up image capture listener, which is triggered after photo has
-        // been taken
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(this),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
-                }
-
-                override fun
-                        onImageSaved(output: ImageCapture.OutputFileResults){
-                    val msg = "Photo capture succeeded: ${output.savedUri}"
-                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
-                }
-            }
-        )
-    }
-
-
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
@@ -165,56 +128,11 @@ class ScanPlantsActivity : AppCompatActivity() {
             imageCapture = ImageCapture.Builder().build()
 
 
-            // Select back camera as a default
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
-            try {
-                // Unbind use cases before rebinding
-                cameraProvider.unbindAll()
-
-                // Bind use cases to camera
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture)
-
-            } catch(exc: Exception) {
-                Log.e(TAG, "Use case binding failed", exc)
-            }
-
-        }, ContextCompat.getMainExecutor(this))
-
-    }
-}
-/*
-   override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor.shutdown()
-    }
-
-
-
-    private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        val imageAnalyzer = ImageAnalysis.Builder()
-            .build()
-            .also {
-                it.setAnalyzer(cameraExecutor, LuminosityAnalyzer { luma ->
-                    Log.d(TAG, "Average luminosity: $luma")
-                })
-            }
-
-
-        cameraProviderFuture.addListener({
-            // Used to bind the lifecycle of cameras to the lifecycle owner
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-
-            // Preview
-            val preview = Preview.Builder()
+            val imageAnalyzer = ImageAnalysis.Builder()
                 .build()
                 .also {
-                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+                    it.setAnalyzer(cameraExecutor, ImageAnalyzer(this, graphicOverlay!!))
                 }
-            imageCapture = ImageCapture.Builder().build()
 
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -234,45 +152,60 @@ class ScanPlantsActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
 
     }
+    private inner class ImageAnalyzer(ctx : Context, private val graphicsOverlay : GraphicOverlay) : ImageAnalysis.Analyzer {
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
-    }
+        private val localModel = LocalModel.Builder()
+            .setAssetFilePath("lite-model_aiy_vision_classifier_plants_V1_3.tflite")
+            .build()
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (allPermissionsGranted()) {
-                startCamera()
-            } else {
-                Toast.makeText(this,
-                    "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT).show()
-                finish()
+        private val customObjectDetectorOptions = CustomObjectDetectorOptions.Builder(localModel)
+            .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
+            .enableClassification()
+            .setClassificationConfidenceThreshold(0.7f)
+            .setMaxPerObjectLabelCount(1)
+            .build()
+
+        private val objectDetector = ObjectDetection.getClient(customObjectDetectorOptions)
+
+        var needUpdateGraphOSrcInfo = true
+
+        @SuppressLint("UnsafeOptInUsageError")
+        override fun analyze(imageP: ImageProxy) {
+            if(needUpdateGraphOSrcInfo) {
+                val rotationDegrees = imageP.imageInfo.rotationDegrees
+                if(rotationDegrees == 0 || rotationDegrees == 180) {
+                    graphicsOverlay.setImageSourceInfo(
+                        imageP.width, imageP.height, false
+                    )
+                } else {
+                    graphicsOverlay.setImageSourceInfo(
+                        imageP.height, imageP.width, false
+                    )
+                }
+                needUpdateGraphOSrcInfo = false
             }
+
+            val mediaImage  = imageP.image
+            if(mediaImage != null) {
+                val image = InputImage.fromMediaImage(mediaImage, imageP.imageInfo.rotationDegrees)
+
+                objectDetector.process(image)
+                    .addOnFailureListener { Log.d("Scan.Plant", it.printStackTrace().toString()) }
+                    .addOnSuccessListener {
+                        binding.hintText.visibility = View.GONE
+                        graphicsOverlay.clear()
+                        for(dO in it) {
+                            graphicsOverlay.add(ObjectGraphic(graphicsOverlay, dO))
+                        }
+                        graphicsOverlay.postInvalidate()
+                    }.addOnCompleteListener {
+                        imageP.close()
+                    }
+
+            }
+
         }
+
+
     }
-    private class LuminosityAnalyzer(private val listener: LumaListener) : ImageAnalysis.Analyzer {
-
-        private fun ByteBuffer.toByteArray(): ByteArray {
-            rewind()    // Rewind the buffer to zero
-            val data = ByteArray(remaining())
-            get(data)   // Copy the buffer into a byte array
-            return data // Return the byte array
-        }
-
-        override fun analyze(image: ImageProxy) {
-
-            val buffer = image.planes[0].buffer
-            val data = buffer.toByteArray()
-            val pixels = data.map { it.toInt() and 0xFF }
-            val luma = pixels.average()
-
-            listener(luma)
-
-            image.close()
-        }
-    }
- */
+}

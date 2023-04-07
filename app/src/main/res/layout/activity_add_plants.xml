@@ -36,6 +36,7 @@
         android:backgroundTint="@color/white"
         app:srcCompat="@drawable/planticon"
       android:layout_height="wrap_content"
+        style="@style/Widget.Project.Fab"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_margin="15dp"/>
     <ProgressBar

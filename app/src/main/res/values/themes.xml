@@ -2,22 +2,26 @@
     <!-- Base application theme. -->
     <style name="Theme.AndroidProject" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#00A499</item>
-        <item name="colorPrimaryVariant">#006C65</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">#B5DC6F</item>
+        <item name="colorPrimaryVariant">#69E0FF</item>
+        <item name="colorOnPrimary">@color/background_black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">true</item>
         <item name="colorSecondaryContainer">#746CE89C</item>
+        <item name="android:windowContentTransitions">true</item>
 
-        <item name="android:windowBackground">#fefcf6</item>
+
+
     </style>
     <style name="Widget.Project.ActionBar" parent="Widget.Material3.BottomAppBar">
         <item name="backgroundTint">#ACEAAA</item>
+        <item name="fontFamily">sans-serif-light</item>
     </style>
     <style name="Widget.Project.Fab" parent="Widget.Material3.FloatingActionButton.Primary">
         <item name="backgroundTint">#ffe66e</item>
@@ -34,11 +38,14 @@
     <style name="Widget.Project.LoginCardView" parent="Theme.AndroidProject">
         <item name="cardBackgroundColor">#E2EFCA</item>
         <item name="cardElevation">5dp</item>
-
+        <item  name ="strokeWidth">0dp</item>
     </style>
     <style name="Widget.Project.LoginBodyCardView" parent="Theme.AndroidProject">
         <item name="cardElevation">5dp</item>
         <item name="cardBackgroundColor">#FFFFFF</item>
+        <item  name ="strokeWidth">0dp</item>
+
+
     </style>
     <style name="Widget.Project.cutCardView" parent="Theme.AndroidProject">
         <item name="cornerFamily">rounded</item>
@@ -65,21 +72,33 @@
     </style>
 
     <style name="Widget.Project.AccountCard" parent="Theme.AndroidProject">
-        <item name="cardElevation">5dp</item>
-        <item name="cardBackgroundColor">#f5f4eb</item>
+        <item name="cardElevation">1dp</item>
+        <item name="cardBackgroundColor">@color/background_white</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/text_gray</item>
     </style>
     <style name="ProgressBar" parent="Theme.AndroidProject">
         <item name="colorAccent">#528A3E</item>
     </style>
 
     <style name="Widget.Project.PlantConfirmationCardView" parent="Theme.AndroidProject">
-        <item name="cardElevation">5dp</item>
-        <item name="cardBackgroundColor">#f5f4eb</item>
+        <item name="cardElevation">1dp</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/text_gray</item>
     </style>
     <style name="Widget.Project.PlantCardLayout" parent="Theme.AndroidProject">
-        <item name="cardElevation">5dp</item>
-        <item name="cardBackgroundColor">#f5f4eb</item>
+        <item name="cardElevation">1dp</item>
+        <item name="cardBackgroundColor">@color/background_white</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/text_gray</item>
     </style>
+
+    <style name="Widget.Project.PlantDetailButtonStyle" parent="Widget.Material3.Button.OutlinedButton">
+        <item   name="iconTint">@color/black</item>
+
+    </style>
+
     <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
@@ -88,13 +107,13 @@
         <item name="cardElevation">0dp</item>
         <item name="cardCornerRadius">0dp</item>
         <item name="strokeWidth">0dp</item>
-        <item name="cardBackgroundColor">#fefcf6</item>
+        <item name="cardBackgroundColor">@color/background_white</item>
 
     </style>
 
     <style name="Widget.Project.PlantDetailsCardLayout" parent="Theme.AndroidProject">
-        <item name="cardElevation">2dp</item>
-        <item name="cardBackgroundColor">#fefcf6</item>
+        <item name="cardElevation">10dp</item>
+        <item name="cardBackgroundColor">@color/white</item>
         <item name="strokeWidth">0dp</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">15dp</item>
@@ -112,19 +131,16 @@
     <style name="Widget.Project.NotesBackStyle" parent="Widget.Material3.Button.OutlinedButton">
         <item   name="iconTint">#20402D</item>
     </style>
-
     <style name="Widget.Project.SaveNotes" parent="Widget.Material3.FloatingActionButton.Primary">
         <item name="backgroundTint">#D5F1A3</item>
         <item name="fabCustomSize">60dp</item>
     </style>
     <style name="Themes.Project.NotesLayout" parent="Widget.Material3.FloatingActionButton.Primary">
-        <item name="android:background">#fefcf6</item>
+        <item name="android:background">@color/background_white</item>
     </style>
-    <style name="Themes.Project.LogOutButton" parent="Widget.Material3.FloatingActionButton.Primary">
+    <style name="Themes.Project.LogOutButton" parent="Theme.AndroidProject">
         <item name="cornerRadius">10dp</item>
         <item name="elevation">10dp</item>
-        <item name="backgroundTint">#9CD882</item>
-        <item name="android:textColor">#0D100C</item>
     </style>
     <style name="Widget.Project.showLogOut" parent="Widget.Material3.Button.OutlinedButton">
         <item   name="iconTint">@color/black</item>
@@ -133,8 +149,21 @@
     <style name="Themes.Project.AboutButton" parent="Widget.Material3.FloatingActionButton.Primary">
         <item name="cornerRadius">0dp</item>
         <item name="elevation">10dp</item>
-        <item name="backgroundTint">#fefcf6</item>
+        <item name="backgroundTint">@color/background_white</item>
         <item name="android:textColor">#0D100C</item>
+    </style>
+
+    <style name="Themes.Project.NotesEditText" parent="Theme.AndroidProject">
+        <item name="android:background">#F7FFFEF0</item>
+    </style>
+
+    <style name="Widget.Project.OpenPlantNotesStyle" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="iconTint">@color/background_black</item>
+        <item name="android:textColor">@color/background_black</item>
+    </style>
+    <style name="Themes.Project.SignInButton" parent="Theme.AndroidProject">
+        <item name="cornerRadius">5dp</item>
+        <item name="elevation">10dp</item>
     </style>
 
 

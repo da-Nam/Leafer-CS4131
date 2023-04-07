@@ -1,12 +1,14 @@
 package com.example.androidproject.mainFragments
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,10 +56,12 @@ class PlantFragment : Fragment() {
 
         recyclerView = binding.RecyclerPlantListView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = RecyclerPlantListAdapter(requireContext(), listOPlants) {
-            println("I have been clicked uwu!")
+        recyclerView.adapter = RecyclerPlantListAdapter(requireContext(), listOPlants) {it, name ->
+            //println("I have been clicked uwu!")
+
             val intent = Intent(requireContext(), PlantDetails::class.java)
             intent.putExtra("plant_object", it)
+
             startActivity(intent)
 
         }

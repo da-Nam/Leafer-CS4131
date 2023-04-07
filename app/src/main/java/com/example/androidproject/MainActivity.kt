@@ -120,21 +120,21 @@ class MainActivity : AppCompatActivity() {
         windowManager.defaultDisplay.getMetrics(metrics)
         val height = metrics.heightPixels
         val rotationAnimator = ObjectAnimator.ofFloat(binding.fab, "rotation", 0f, 45f)
-        rotationAnimator.duration = 250L
+        rotationAnimator.duration = 200L
         val addPlantAnimator = ObjectAnimator.ofFloat(
             binding.addPlant,
             "translationY",
             0f,
             (-((height.toFloat() / binding.fab.height.toFloat()) * 25))
         )
-        addPlantAnimator.duration = 350L
+        addPlantAnimator.duration = 300L
         val scanPlantAnimator = ObjectAnimator.ofFloat(
             binding.scanPlant,
             "translationY",
             0f,
             (-((height.toFloat() / binding.fab.height.toFloat()) * 37))
         )
-        scanPlantAnimator.duration = 350L
+        scanPlantAnimator.duration = 300L
         val animatorSet = AnimatorSet()
         animatorSet.play(addPlantAnimator).with(scanPlantAnimator).after(rotationAnimator)
 
@@ -148,13 +148,13 @@ class MainActivity : AppCompatActivity() {
                 alpha = 0f
                 visibility = View.VISIBLE
 
-                animate().alpha(0.4f).duration = 250
+                animate().alpha(0.4f).duration = 200
             }
 
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.addPlant.visibility = View.VISIBLE
                 binding.scanPlant.visibility = View.VISIBLE
-            }, 200)
+            }, 150)
         } else if (fabOpened) {
             animatorSet.reverse()
             fabOpened = false
@@ -163,7 +163,7 @@ class MainActivity : AppCompatActivity() {
                 visibility = View.VISIBLE
                 alpha = 0.4f
 
-                animate().alpha(0f).setDuration(250).withEndAction {
+                animate().alpha(0f).setDuration(200).withEndAction {
                     visibility = View.GONE
                 }
             }
@@ -171,7 +171,7 @@ class MainActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.addPlant.visibility = View.GONE
                 binding.scanPlant.visibility = View.GONE
-            }, 150)
+            }, 100)
         }
     }
     override fun onBackPressed() {

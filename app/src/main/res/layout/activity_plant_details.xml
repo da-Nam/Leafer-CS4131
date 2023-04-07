@@ -17,7 +17,8 @@
                 <ImageView
                     android:id="@+id/image_plant"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"/>
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -141,8 +142,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            app:dividerColor="#496727" />
+            app:dividerColor="@color/text_gray" />
         <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Project.OpenPlantNotesStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
@@ -150,7 +152,7 @@
             app:icon="@drawable/ic_plantnotes"
             android:text="Open Plant Notes"
             android:id="@+id/open_plant_notes_btn"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:cornerRadius="10dp" />
 
     </LinearLayout>

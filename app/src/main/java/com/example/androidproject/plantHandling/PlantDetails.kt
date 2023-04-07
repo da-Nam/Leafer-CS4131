@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.app.*
 import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,9 +20,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
+import com.example.androidproject.R
 import com.example.androidproject.databinding.ActivityPlantDetailsBinding
 import com.example.androidproject.model.PlantItem
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK
 import com.google.android.material.timepicker.TimeFormat
@@ -30,6 +38,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.sql.DataSource
 
 
 class PlantDetails : AppCompatActivity() {
@@ -45,7 +54,10 @@ class PlantDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlantDetailsBinding.inflate(layoutInflater)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
         setContentView(binding.root)
+        supportPostponeEnterTransition()
 
         alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
 
@@ -57,6 +69,7 @@ class PlantDetails : AppCompatActivity() {
 
         binding.leaveBtn.setOnClickListener {
             finish()
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
         binding.openPlantNotesBtn.setOnClickListener {
@@ -66,9 +79,11 @@ class PlantDetails : AppCompatActivity() {
             daPlant.name!!.substring(1).lowercase(Locale.ROOT)
         }"
         binding.plantName.text = isdaname
+        val requestOptions = RequestOptions.placeholderOf(R.drawable.ic_notes_alert).dontTransform()
         Glide
             .with(applicationContext)
             .load(daPlant.url)
+            .apply(requestOptions)
             .centerCrop()
             .into(binding.imagePlant)
 
@@ -89,6 +104,7 @@ class PlantDetails : AppCompatActivity() {
             val userPlantsRef = db.collection("users").document(currentUser!!.uid)
             userPlantsRef.update("plantList", FieldValue.arrayRemove(daPlant))
             finish()
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
         binding.openPlantNotesBtn.setOnClickListener {
@@ -175,6 +191,12 @@ class PlantDetails : AppCompatActivity() {
                 recyclerView.adapter!!.notifyDataSetChanged()
             }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    }
     private fun createNotificationChannel(id: String, name: String, description: String){
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE)
                 as NotificationManager
@@ -187,25 +209,4 @@ class PlantDetails : AppCompatActivity() {
         channel.vibrationPattern = longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
         notificationManager.createNotificationChannel(channel)
     }
-    /*
-    private fun pickDateTime() {
-        val currentDateTime = Calendar.getInstance()
-        val startYear = currentDateTime.get(Calendar.YEAR)
-        val startMonth = currentDateTime.get(Calendar.MONTH)
-        val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
-        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
-        val startMinute = currentDateTime.get(Calendar.MINUTE)
-
-        DatePickerDialog(this,  { _, year, month, day ->
-            TimePickerDialog(this,  { _, hour, minute ->
-                val pickedDateTime = Calendar.getInstance()
-                println(month)
-                pickedDateTime.set(year, month, day, hour, minute)
-                //doSomethingWith(pickedDateTime)
-            }, startHour, startMinute, false).show()
-        }, startYear, startMonth, startDay).show()
-    }
-
-     */
-
 }
