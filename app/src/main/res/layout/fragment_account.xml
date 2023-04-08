@@ -6,15 +6,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     tools:context=".mainFragments.AccountFragment">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="200dp"
-        android:scaleX="0.5"
-        android:scaleY="0.5"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/leaferapplogo"
-        android:text="@string/hello_blank_fragment" />
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_sv"

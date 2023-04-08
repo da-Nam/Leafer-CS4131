@@ -1,21 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".onboardingFragments.ThirdPage">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato"
+            android:textAlignment="center"
+            android:text="What are you waiting for?"
+            android:padding="5dp"
+            android:textStyle="bold|italic"
+            android:textSize="40sp"
+            />
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/leaferapplogo"
+            android:text="@string/hello_blank_fragment" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato"
+            android:textAlignment="center"
+            android:text="@string/onboarding_invitation"
+            android:padding="10dp"
+            android:textSize="30sp"
+            />
+
+
         <com.google.android.material.button.MaterialButton
             style="@style/Themes.Project.SignInButton"
             android:id="@+id/startButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            android:text="Start App"
+            android:layout_margin="5dp"
+            android:textSize="20dp"
+            android:text="@string/onboarding_btn"
             android:layout_gravity="center"/>
     </LinearLayout>
 

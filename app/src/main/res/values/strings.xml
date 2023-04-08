@@ -6,5 +6,12 @@
     <string name="scan_plant">Scan Plants</string>
     <string name="add_plant">Add Plants</string>
     <string name="greeting">Welcome to Leafer!</string>
-    <string name="onboading_subheading">A Plant Journal made with enthusiasts of varying skill levels in mind</string>
+    <string name="onboading_subheading">A Plant Journal made with enthusiasts of varying skill levels in mind.</string>
+    <string name="onboarding_feature1">Scan and identify plants.</string>
+    <string name="onboarding_feature2">Add &amp; track plants with reminders.</string>
+    <string name="onboarding_feature3">Take down notes of individual plants.</string>
+    <string name="onboarding_feature4">Easily accessible. Synced across devices!</string>
+    <string name="onboarding_btn">Go To App!</string>
+    <string name="onboarding_invitation">Start \'Leafing\' with Leafer Today!</string>
+
 </resources>
